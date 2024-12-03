@@ -1,0 +1,38 @@
+import React from 'react'
+
+import { Dimensions, FlatList, StyleSheet, Text, View } from 'react-native'
+
+import { useSelector } from 'react-redux'
+import OrderList from '../../components/OrderList'
+import LoadingScreen from "../../../components/LoadingScreen"
+
+const OrderScreen = () => {
+  const { orderItems } = useSelector((state) => state.shop);
+
+  const orderList = (itemData) => {
+    return <OrderList data={itemData.item} />;
+  };
+
+  return (
+    <View style={styles.container}>
+<LoadingS
+      <Text style={styles.orderTitle}>
+        Number Of Order: {orderItems.length}
+      </Text>
+      <FlatList data={orderItems} renderItem={orderList} showsVerticalScrollIndicator={false}/>
+    </View>
+  );
+}
+
+export default OrderScreen
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: Dimensions.get("window").scale * 4,
+    gap: 40,
+  },
+  orderTitle: {
+    fontSize: Dimensions.get("window").fontScale * 20,
+  },
+});

@@ -1,0 +1,4 @@
+const categoryData = [
+    "Accessories"
+
+]

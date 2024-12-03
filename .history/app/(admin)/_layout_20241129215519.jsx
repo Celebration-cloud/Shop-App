@@ -1,0 +1,43 @@
+import React from "react";
+
+import { StyleSheet } from "react-native";
+
+import { Ionicons } from "@expo/vector-icons";
+import { Stack } from "expo-router";
+
+import MenuAddProduct from "../../components/MenuAddProduct";
+import MenuIcon from "../../components/MenuIcon";
+
+const AdminLayout = () => {
+  return (
+    <Stack
+      screenOptions={{
+        headerTitleAlign: "center",
+      }}
+    >
+      <Stack.Screen
+        name="admin"
+        options={{
+          title: "Admin",
+          headerLeft: () => (
+            <MenuBar />
+          ),
+          headerRight: () => <MenuIcon><Ionicons name="add-circle-outline" size={30}/></MenuIcon>,
+        }}
+      />
+      <Stack.Screen
+        name="editOrAdd/[slug]"
+        options={{
+          headerLeft: () => (
+            <MenuBar />
+          ),
+          headerRight: () => <MenuI ,
+        }}
+      />
+    </Stack>
+  );
+};
+
+export default AdminLayout;
+
+const styles = StyleSheet.create({});
