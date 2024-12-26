@@ -1,0 +1,251 @@
+Shop App Backend API
+Welcome to the Shop App Backend API documentation! This guide is designed to help frontend developers understand the available API endpoints, including the routes, request and response formats, and any necessary middleware.
+
+Base URL
+The base URL for all API endpoints is:
+/api
+
+Authentication Routes
+Sign Up
+Endpoint:
+/api/auth/signUp
+Method:
+POST
+Middleware:
+resolveNewUserDetails
+,
+resolveUser
+Description: Registers a new user.
+Request Body:
+{
+  "email": "user@example.com",
+  "password": "userpassword"
+}
+Response:
+{
+  "message": "User user@example.com successfully created",
+  "customToken": "firebase_custom_token"
+}
+Login
+Endpoint:
+/api/auth/login
+Method:
+POST
+Middleware:
+resolveLoginUserDetails
+,
+resolveUser
+Description: Logs in an existing user.
+Request Body:
+{
+  "email": "user@example.com",
+  "password": "userpassword"
+}
+Response:
+{
+  "message": "Logged in successfully",
+  "session": "session_token"
+}
+Logout
+Endpoint:
+/api/auth/logout
+Method:
+POST
+Description: Logs out the current user by clearing the session cookie.
+Response:
+{
+  "message": "Logged out successfully"
+}
+Shop Item Routes
+Add New Shop Item (Admin)
+Endpoint:
+/api/shopItem/post
+Method:
+POST
+Middleware:
+postValidator
+,
+resolvePostBody
+Description: Adds a new shop item to the database.
+Request Body:
+{
+  "name": "New Shop Item",
+  "price": 100,
+  "description": "A description of the new item"
+}
+Response:
+{
+  "message": "Shop item added successfully",
+  "id": "item_id"
+}
+Update Shop Item (Admin)
+Endpoint:
+/api/shopItem/patch/:id
+Method:
+PATCH
+Middleware:
+idValidator
+,
+patchValidator
+,
+resolveIndexId
+Description: Updates an existing shop item.
+Request Body:
+{
+  "name": "Updated Shop Item",
+  "price": 150
+}
+Response:
+{
+  "message": "Shop item updated successfully"
+}
+Delete Shop Item (Admin)
+Endpoint:
+/api/shopItem/delete/:id
+Method:
+DELETE
+Middleware:
+idValidator
+,
+resolveIndexId
+Description: Deletes a shop item from the database.
+Response:
+{
+  "message": "Shop item deleted successfully"
+}
+Get All Shop Items (User)
+Endpoint:
+/api/shopItem/user/get
+Method:
+GET
+Middleware:
+session
+Description: Retrieves all shop items available in the database.
+Response:
+[
+  {
+    "id": "item_id",
+    "name": "Shop Item",
+    "price": 100,
+    "description": "Item description"
+  },
+  ...
+]
+Cart and Order Routes (User)
+Get Cart
+Endpoint:
+/api/shopItem/user/carts
+Method:
+GET
+Middleware:
+session
+,
+resolveUserData
+Description: Retrieves all items in the user's cart.
+Response:
+[
+  {
+    "id": "cart_item_id",
+    "name": "Shop Item",
+    "count": 2
+  },
+  ...
+]
+Add Order Item
+Endpoint:
+/api/shopItem/user/addOrder
+Method:
+POST
+Middleware:
+session
+,
+resolveUserData
+Description: Adds an item to the user's orders.
+Response:
+{
+  "message": "Order added successfully"
+}
+Get Order Items
+Endpoint:
+/api/shopItem/user/orders
+Method:
+GET
+Middleware:
+session
+,
+resolveUserOrders
+Description: Retrieves all orders made by the user.
+Response:
+[
+  {
+    "orderId": "order_id",
+    "items": [
+      {
+        "id": "item_id",
+        "name": "Shop Item",
+        "quantity": 2
+      }
+    ],
+    "status": "pending"
+  },
+  ...
+]
+Add to Cart
+Endpoint:
+/api/shopItem/user/addCart/:id
+Method:
+POST
+Middleware:
+session
+,
+idValidator
+,
+resolveIndexId
+,
+resolveUserData
+Description: Adds an item to the user's cart.
+Response:
+{
+  "message": "Successfully added to cart"
+}
+Remove Cart Item
+Endpoint:
+/api/shopItem/user/removeCart/:id
+Method:
+DELETE
+Middleware:
+session
+,
+idValidator
+,
+resolveIndexId
+,
+resolveUserData
+Description: Removes an item from the user's cart.
+Response:
+{
+  "message": "Cart item removed successfully"
+}
+Get Single Shop Item
+Endpoint:
+/api/shopItem/user/:id
+Method:
+GET
+Middleware:
+session
+,
+idValidator
+,
+resolveIndexId
+Description: Retrieves a single shop item by ID.
+Response:
+{
+  "id": "item_id",
+  "name": "Shop Item",
+  "price": 100,
+  "description": "Item description"
+}
+Error Handling
+Any errors encountered during request processing will result in appropriate HTTP status codes and error messages.
+
+Feel free to share this README document with your frontend developers to help them understand and use the API effectively. If you have any further questions or need more details, just let me know! 😊

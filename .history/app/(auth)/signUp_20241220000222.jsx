@@ -1,0 +1,98 @@
+import React from 'react'
+
+import { StyleSheet, Text, View } from 'react-native'
+
+const SignUpScreen = () => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.content}>
+        <View style={styles.logoContainer}>
+          <Image
+            resizeMode="cover"
+            source={require("../../assets/images/shop-app-logo.png")}
+            style={{ position: "relative", width: "100%", height: "100%" }}
+          />
+        </View>
+        <View style={styles.formContainer}>
+          <Text style={styles.title}>Login</Text>
+          <View style={styles.groupInput}>
+            <View style={styles.inputField}>
+              <Text>Email</Text>
+              <Controller
+                control={control}
+                rules={{
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "Invalid email address",
+                  },
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextInput
+                    style={styles.input}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                  />
+                )}
+                name="email"
+              />
+              {errors.email && (
+                <Text style={styles.error}>{errors.email.message}</Text>
+              )}
+            </View>
+            <View style={styles.inputField}>
+              <Text>Password</Text>
+              <Controller
+                control={control}
+                rules={{
+                  required: "Password is required",
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+                    message:
+                      "Password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, a number, and a symbol",
+                  },
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextInput
+                    style={styles.input}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    secureTextEntry
+                  />
+                )}
+                name="password"
+              />
+              {errors.password && (
+                <Text style={styles.error}>{errors.password.message}</Text>
+              )}
+            </View>
+            <MainButton
+              onPress={handleSubmit(onSubmit)}
+              style={styles.btn}
+              text={styles.btnText}
+            >
+              Login
+            </MainButton>
+          </View>
+          <View style={styles.alt}>
+            <Text>Don't have an account?</Text>
+            <Pressable
+              onPress={handleSignupSwitch}
+              style={{ justifyContent: "center", alignItems: "center" }}
+            >
+              <Text style={styles.hlt}>Sign up</Text>
+            </Pressable>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+export default SignUpScreen
+
+const styles = StyleSheet.create({})
