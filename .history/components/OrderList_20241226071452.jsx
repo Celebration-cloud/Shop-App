@@ -28,7 +28,7 @@ const OrderList = ({ data }) => {
             style={styles.btn}
             text={styles.text}
           >
-            {visible ? "See less" : "See More"}
+            {visi"See More"}
           </MainButton>
         </View>
 

@@ -1,5 +1,8 @@
+import { Dimensions } from 'react-native';
+
 import { Stack } from 'expo-router';
 
+import { Ionicons } from '@expo/vector-icons';
 import { Provider } from 'react-redux';
 import { enableScreens } from 'react-native-screens';
 

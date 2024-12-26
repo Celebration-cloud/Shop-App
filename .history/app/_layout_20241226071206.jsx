@@ -1,3 +1,5 @@
+import { Dimensions } from 'react-native';
+
 import { Stack } from 'expo-router';
 
 import { Provider } from 'react-redux';
