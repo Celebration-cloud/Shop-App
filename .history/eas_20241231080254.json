@@ -4,9 +4,7 @@
     "appVersionSource": "remote"
   },
   "build": {
-    "shop-production": {
-      "android": { "releaseChannel": "production", "workflow": "managed" }
-    },
+    
     "preview": {
       "android": {
         "buildType": "apk"
