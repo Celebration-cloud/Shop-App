@@ -9,7 +9,7 @@
     "userInterfaceStyle": "automatic",
     "platforms": ["android"],
     "newArchEnabled": true,
-    "android": { 
+    "android": 
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
